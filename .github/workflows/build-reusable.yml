@@ -168,13 +168,13 @@ jobs:
             RELEASE_FLAGS: "-O3 -DNDEBUG=1"
           - lto_flag: ""
             label: bun-webkit-linux-arm64-debug
-            os: ubuntu-24.04-arm-4
+            os: ubuntu-24.04-arm
             package_json_arch: "arm64"
             CMAKE_BUILD_TYPE: "Debug"
             RELEASE_FLAGS: "-O3 -DNDEBUG=1"
           - lto_flag: ""
             label: bun-webkit-linux-arm64-debug-asan
-            os: ubuntu-24.04-arm-4
+            os: ubuntu-24.04-arm
             package_json_arch: "arm64"
             CMAKE_BUILD_TYPE: "Debug"
             RELEASE_FLAGS: "-O3 -DNDEBUG=1"
@@ -186,24 +186,25 @@ jobs:
             CMAKE_BUILD_TYPE: "Debug"
             RELEASE_FLAGS: "-O3 -DNDEBUG=1"
             ENABLE_SANITIZERS: "address,undefined"
-          - lto_flag: "-flto=full -fwhole-program-vtables -fforce-emit-vtables"
-            label: bun-webkit-linux-arm64-lto
-            os: ubuntu-24.04-arm-4
-            package_json_arch: "arm64"
-            CMAKE_BUILD_TYPE: "Release"
-            RELEASE_FLAGS: "-O3 -DNDEBUG=1"
+          # LTO builds commented out - require more memory than GitHub runners provide
+          # - lto_flag: "-flto=full -fwhole-program-vtables -fforce-emit-vtables"
+          #   label: bun-webkit-linux-arm64-lto
+          #   os: ubuntu-24.04-arm
+          #   package_json_arch: "arm64"
+          #   CMAKE_BUILD_TYPE: "Release"
+          #   RELEASE_FLAGS: "-O3 -DNDEBUG=1"
           - lto_flag: ""
             label: bun-webkit-linux-arm64
-            os: ubuntu-24.04-arm-4
+            os: ubuntu-24.04-arm
             package_json_arch: "arm64"
             CMAKE_BUILD_TYPE: "Release"
             RELEASE_FLAGS: "-O3 -DNDEBUG=1"
-          - lto_flag: "-flto=full -fwhole-program-vtables -fforce-emit-vtables"
-            label: bun-webkit-linux-amd64-lto
-            os: ubuntu-latest
-            package_json_arch: "x64"
-            CMAKE_BUILD_TYPE: "Release"
-            RELEASE_FLAGS: "-O3 -DNDEBUG=1"
+          # - lto_flag: "-flto=full -fwhole-program-vtables -fforce-emit-vtables"
+          #   label: bun-webkit-linux-amd64-lto
+          #   os: ubuntu-latest
+          #   package_json_arch: "x64"
+          #   CMAKE_BUILD_TYPE: "Release"
+          #   RELEASE_FLAGS: "-O3 -DNDEBUG=1"
           - lto_flag: ""
             label: bun-webkit-linux-amd64
             os: ubuntu-latest
@@ -219,7 +220,7 @@ jobs:
             ENABLE_SANITIZERS: "address,undefined"
           - lto_flag: ""
             label: bun-webkit-linux-arm64-asan
-            os: ubuntu-24.04-arm-4
+            os: ubuntu-24.04-arm
             package_json_arch: "arm64"
             CMAKE_BUILD_TYPE: "Release"
             RELEASE_FLAGS: "-O3 -DNDEBUG=1"
@@ -370,24 +371,25 @@ jobs:
             CMAKE_BUILD_TYPE: "Debug"
           - lto_flag: ""
             label: bun-webkit-linux-arm64-musl-debug
-            os: ubuntu-24.04-arm-4
+            os: ubuntu-24.04-arm
             package_json_arch: "arm64"
             CMAKE_BUILD_TYPE: "Debug"
-          - lto_flag: "-flto=full -fwhole-program-vtables -fforce-emit-vtables"
-            label: bun-webkit-linux-arm64-musl-lto
-            os: ubuntu-24.04-arm-4
-            package_json_arch: "arm64"
-            CMAKE_BUILD_TYPE: "MinSizeRel"
+          # LTO builds commented out - require more memory than GitHub runners provide
+          # - lto_flag: "-flto=full -fwhole-program-vtables -fforce-emit-vtables"
+          #   label: bun-webkit-linux-arm64-musl-lto
+          #   os: ubuntu-24.04-arm
+          #   package_json_arch: "arm64"
+          #   CMAKE_BUILD_TYPE: "MinSizeRel"
           - lto_flag: ""
             label: bun-webkit-linux-arm64-musl
-            os: ubuntu-24.04-arm-4
+            os: ubuntu-24.04-arm
             package_json_arch: "arm64"
             CMAKE_BUILD_TYPE: "MinSizeRel"
-          - lto_flag: "-flto=full -fwhole-program-vtables -fforce-emit-vtables"
-            label: bun-webkit-linux-amd64-musl-lto
-            os: ubuntu-latest
-            package_json_arch: "x64"
-            CMAKE_BUILD_TYPE: "MinSizeRel"
+          # - lto_flag: "-flto=full -fwhole-program-vtables -fforce-emit-vtables"
+          #   label: bun-webkit-linux-amd64-musl-lto
+          #   os: ubuntu-latest
+          #   package_json_arch: "x64"
+          #   CMAKE_BUILD_TYPE: "MinSizeRel"
           - lto_flag: ""
             label: bun-webkit-linux-amd64-musl
             os: ubuntu-latest
@@ -514,14 +516,15 @@ jobs:
         with:
           name: bun-webkit-macos-amd64
           path: ${{runner.temp}}/bun-webkit-macos-amd64
-      - uses: actions/download-artifact@v4
-        with:
-          name: bun-webkit-linux-amd64-lto
-          path: ${{runner.temp}}/bun-webkit-linux-amd64-lto
-      - uses: actions/download-artifact@v4
-        with:
-          name: bun-webkit-linux-arm64-lto
-          path: ${{runner.temp}}/bun-webkit-linux-arm64-lto
+      # LTO builds commented out - require more memory than GitHub runners provide
+      # - uses: actions/download-artifact@v4
+      #   with:
+      #     name: bun-webkit-linux-amd64-lto
+      #     path: ${{runner.temp}}/bun-webkit-linux-amd64-lto
+      # - uses: actions/download-artifact@v4
+      #   with:
+      #     name: bun-webkit-linux-arm64-lto
+      #     path: ${{runner.temp}}/bun-webkit-linux-arm64-lto
       - uses: actions/download-artifact@v4
         with:
           name: bun-webkit-windows-amd64
@@ -546,14 +549,14 @@ jobs:
         with:
           name: bun-webkit-linux-arm64-musl-debug
           path: ${{runner.temp}}/bun-webkit-linux-arm64-musl-debug
-      - uses: actions/download-artifact@v4
-        with:
-          name: bun-webkit-linux-amd64-musl-lto
-          path: ${{runner.temp}}/bun-webkit-linux-amd64-musl-lto
-      - uses: actions/download-artifact@v4
-        with:
-          name: bun-webkit-linux-arm64-musl-lto
-          path: ${{runner.temp}}/bun-webkit-linux-arm64-musl-lto
+      # - uses: actions/download-artifact@v4
+      #   with:
+      #     name: bun-webkit-linux-amd64-musl-lto
+      #     path: ${{runner.temp}}/bun-webkit-linux-amd64-musl-lto
+      # - uses: actions/download-artifact@v4
+      #   with:
+      #     name: bun-webkit-linux-arm64-musl-lto
+      #     path: ${{runner.temp}}/bun-webkit-linux-arm64-musl-lto
 
       - name: Rename files
         run: |
@@ -576,10 +579,11 @@ jobs:
           mv ${{runner.temp}}/bun-webkit-macos-arm64-debug/bun-webkit.tar.gz ./out/bun-webkit-macos-arm64-debug.tar.gz
           mv ${{runner.temp}}/bun-webkit-macos-arm64-debug-asan/bun-webkit.tar.gz ./out/bun-webkit-macos-arm64-debug-asan.tar.gz
           mv ${{runner.temp}}/bun-webkit-macos-amd64-debug/bun-webkit.tar.gz ./out/bun-webkit-macos-amd64-debug.tar.gz
-          mv ${{runner.temp}}/bun-webkit-linux-amd64-lto/bun-webkit.tar.gz ./out/bun-webkit-linux-amd64-lto.tar.gz
-          mv ${{runner.temp}}/bun-webkit-linux-arm64-lto/bun-webkit.tar.gz ./out/bun-webkit-linux-arm64-lto.tar.gz
-          mv ${{runner.temp}}/bun-webkit-linux-amd64-musl-lto/bun-webkit.tar.gz ./out/bun-webkit-linux-amd64-musl-lto.tar.gz
-          mv ${{runner.temp}}/bun-webkit-linux-arm64-musl-lto/bun-webkit.tar.gz ./out/bun-webkit-linux-arm64-musl-lto.tar.gz
+          # LTO builds commented out
+          # mv ${{runner.temp}}/bun-webkit-linux-amd64-lto/bun-webkit.tar.gz ./out/bun-webkit-linux-amd64-lto.tar.gz
+          # mv ${{runner.temp}}/bun-webkit-linux-arm64-lto/bun-webkit.tar.gz ./out/bun-webkit-linux-arm64-lto.tar.gz
+          # mv ${{runner.temp}}/bun-webkit-linux-amd64-musl-lto/bun-webkit.tar.gz ./out/bun-webkit-linux-amd64-musl-lto.tar.gz
+          # mv ${{runner.temp}}/bun-webkit-linux-arm64-musl-lto/bun-webkit.tar.gz ./out/bun-webkit-linux-arm64-musl-lto.tar.gz
           mv ${{runner.temp}}/bun-webkit-windows-amd64/bun-webkit.tar.gz ./out/bun-webkit-windows-amd64.tar.gz
           mv ${{runner.temp}}/bun-webkit-windows-amd64-debug/bun-webkit.tar.gz ./out/bun-webkit-windows-amd64-debug.tar.gz
 
@@ -614,8 +618,6 @@ jobs:
           files: |
             ./out/bun-webkit-linux-amd64.tar.gz
             ./out/bun-webkit-linux-arm64.tar.gz
-            ./out/bun-webkit-linux-amd64-lto.tar.gz
-            ./out/bun-webkit-linux-arm64-lto.tar.gz
             ./out/bun-webkit-linux-amd64-asan.tar.gz
             ./out/bun-webkit-linux-arm64-asan.tar.gz
             ./out/bun-webkit-linux-amd64-debug.tar.gz
@@ -630,8 +632,6 @@ jobs:
           files: |
             ./out/bun-webkit-linux-amd64-musl.tar.gz
             ./out/bun-webkit-linux-arm64-musl.tar.gz
-            ./out/bun-webkit-linux-amd64-musl-lto.tar.gz
-            ./out/bun-webkit-linux-arm64-musl-lto.tar.gz
             ./out/bun-webkit-linux-amd64-musl-debug.tar.gz
             ./out/bun-webkit-linux-arm64-musl-debug.tar.gz
 
