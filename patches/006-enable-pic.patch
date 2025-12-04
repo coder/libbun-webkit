@@ -1,0 +1,18 @@
+diff --git a/Source/cmake/OptionsJSCOnly.cmake b/Source/cmake/OptionsJSCOnly.cmake
+index 1111111..2222222 100644
+--- a/Source/cmake/OptionsJSCOnly.cmake
++++ b/Source/cmake/OptionsJSCOnly.cmake
+@@ -128,9 +128,10 @@ if (ENABLE_STATIC_JSC)
+     set(WebCore_LIBRARY_TYPE SHARED)
+ endif ()
+ 
+-if (USE_BUN_JSC_ADDITIONS)
+-    set(CMAKE_POSITION_INDEPENDENT_CODE False)
+-endif ()
++# libbun-webkit: Force PIC for Node.js addon (.node) embedding via dlopen()
++# Original oven-sh/WebKit disables PIC since Bun is an executable, but we need
++# PIC because libbun is linked into a shared library.
++set(CMAKE_POSITION_INDEPENDENT_CODE True)
+ 
+ if (WIN32)
+     add_definitions(-D_WINDOWS -DNTDDI_VERSION=0x0A000006 -D_WIN32_WINNT=0x0A00)
