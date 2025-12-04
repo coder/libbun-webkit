@@ -1,0 +1,13 @@
+diff --git a/Source/WTF/wtf/bun/RunLoopBun.cpp b/Source/WTF/wtf/bun/RunLoopBun.cpp
+index 744fb7508a0b..246be6438d7a 100644
+--- a/Source/WTF/wtf/bun/RunLoopBun.cpp
++++ b/Source/WTF/wtf/bun/RunLoopBun.cpp
+@@ -202,6 +202,7 @@ void RunLoop::wakeUp()
+     case Kind::Bun:
+         // Do nothing. This means that JSRunLoopTimer::Manager::PerVMData's RunLoop::Timer leaks instead
+         // of being freed.
++        return;
+     }
+ }
+ 
+
