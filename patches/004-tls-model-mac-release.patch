@@ -7,6 +7,7 @@ index 1111111..2222222 100644
  THIS_DIR=$(pwd)
  
 +# Added for Node.js addon (dlopen) compatibility
++LIBBUN_PIC_FLAG="-fPIC"
 +LIBBUN_TLS_FLAG="-ftls-model=global-dynamic"
 +
  # Set default values for environment variables that are not set.
@@ -24,8 +25,8 @@ index 1111111..2222222 100644
      -DCMAKE_CXX_COMPILER="$CMAKE_CXX_COMPILER" \
 -    -DCMAKE_C_FLAGS="-g $CMAKE_C_FLAGS -ffile-prefix-map=$THIS_DIR/Source=vendor/WebKit/Source" \
 -    -DCMAKE_CXX_FLAGS="-g $CMAKE_CXX_FLAGS -ffile-prefix-map=$THIS_DIR/Source=vendor/WebKit/Source" \
-+    -DCMAKE_C_FLAGS="-g $CMAKE_C_FLAGS $LIBBUN_TLS_FLAG -ffile-prefix-map=$THIS_DIR/Source=vendor/WebKit/Source" \
-+    -DCMAKE_CXX_FLAGS="-g $CMAKE_CXX_FLAGS $LIBBUN_TLS_FLAG -ffile-prefix-map=$THIS_DIR/Source=vendor/WebKit/Source" \
++    -DCMAKE_C_FLAGS="-g $CMAKE_C_FLAGS $LIBBUN_PIC_FLAG $LIBBUN_TLS_FLAG -ffile-prefix-map=$THIS_DIR/Source=vendor/WebKit/Source" \
++    -DCMAKE_CXX_FLAGS="-g $CMAKE_CXX_FLAGS $LIBBUN_PIC_FLAG $LIBBUN_TLS_FLAG -ffile-prefix-map=$THIS_DIR/Source=vendor/WebKit/Source" \
      -DENABLE_MALLOC_HEAP_BREAKDOWN=$ENABLE_MALLOC_HEAP_BREAKDOWN \
      -DCMAKE_EXPORT_COMPILE_COMMANDS=ON \
 
